@@ -20,5 +20,5 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   var today = dayjs();
-    $('#currentDay').text(today.format('MMMM DD, YYYY hh:mm A'));
+    $('#currentDay').text(today.format('MMMM DD, YYYY'));
 });
