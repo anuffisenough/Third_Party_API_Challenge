@@ -2,6 +2,14 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
+  //beginning of the input reading function for the event listener
+  function handleCalendarEntries() {
+    console.log(event.target);
+    //console.log($(calendarListDiv.children('div').children('textarea')).val());
+  }
+
+  
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -18,7 +26,13 @@ $(function () {
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  //
-  var today = dayjs();
+  
+  //saves current dayjs time as variable "today"
+var today = dayjs();
+//sets the display header to show today's date (look into updating every second)********
     $('#currentDay').text(today.format('MMMM DD, YYYY'));
+
+    
+var calendarListDiv = $("#event-list-div");
+    calendarListDiv.on('click', '.btn', handleCalendarEntries);
 });
