@@ -17,11 +17,11 @@ var today = dayjs();
 
   var currentHour = dayjs().format("H");
     for (let i = 0; i < hourBlockDivs.length; i++) {
-      if (hourBlockDivs[i].dataset.hour < currentHour) {
+      if (parseInt(hourBlockDivs[i].dataset.hour) < parseInt(currentHour)) {
         $(hourBlockDivs[i]).addClass("past");
-      } else if (hourBlockDivs[i].dataset.hour === currentHour) {
+      } else if (parseInt(hourBlockDivs[i].dataset.hour) === parseInt(currentHour)) {
         $(hourBlockDivs[i]).addClass("present");
-      } else if (hourBlockDivs[i].dataset.hour > currentHour) {
+      } else if (parseInt(hourBlockDivs[i].dataset.hour) > parseInt(currentHour)) {
         $(hourBlockDivs[i]).addClass("future");
       };
     }
