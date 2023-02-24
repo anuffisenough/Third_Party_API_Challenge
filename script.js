@@ -2,15 +2,11 @@
 $(function () {  
   
   //saves current dayjs time as variable "today"
-var today = dayjs();
-//var hours = [9, 10, 11, 12, 13, 14, 15, 16];
-//sets the display header to show today's date (look into updating every second)********
-    $('#currentDay').text(today.format('MMMM DD, YYYY'));
-  
-  //beginning of the input reading function for the event listener
-  function handleCalendarEntries() {
-    
-  }
+  var today = dayjs();
+
+  //sets the display header to show today's date (look into updating every second)********
+  $('#currentDay').text(today.format('MMMM DD, YYYY'));
+
   //array of hour block divs to iterate over to set past, current and future stylings
   var hourBlockDivs = $("#hour-9, #hour-10, #hour-11, #hour-12, #hour-13, #hour-14, #hour-15, #hour-16");
   //current hour in 24 hour format to compare timeslot times for class stylings
@@ -25,35 +21,24 @@ var today = dayjs();
       };
     }
 
+  //saves calendar div for event listener
   var calendar = $("#event-list-div");
-  
+  //adds event listener to calendar div and sets variables for button targets, corresponding text area
   calendar.on('click', '.btn', function(event) {
     let clickedButton = event.target.parentElement;
-    let timeSlot = $(clickedButton.parentElement);
+    let timeSlot = $(clickedButton.parentElement).attr('id');
     let timeSlotTextArea = $(clickedButton.parentElement.children[1]);
     let toDoEntry = timeSlotTextArea.val();
-
-    console.log(timeSlotTextArea);
-    console.log(timeSlot);
-
-    localStorage.setItem(JSON.stringify(timeSlot), toDoEntry);
-
-  });
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  
-
-
     
-var calendarListDiv = $("#event-list-div");
-    calendarListDiv.on('click', '.saveBtn', handleCalendarEntries);
-});
-
+  //saves text content to local storage
+    localStorage.setItem(`${timeSlot}`, toDoEntry);
+  });
+  //variable for jquery text areas
+  var textAreas = $("textarea");
+  //for loop to pull locally-stored todos and render them if available
+    for (let i = 0; i < textAreas.length; i++) {
+      var timeSlotId = $(textAreas[i].parentElement).attr('id');
+      if (localStorage.getItem(`${timeSlotId}`) !== null) {
+      $(textAreas[i]).text(localStorage.getItem(`${timeSlotId}`));
+   }
+}});
