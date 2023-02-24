@@ -8,7 +8,7 @@ $(function () {
   $('#currentDay').text(today.format('MMMM DD, YYYY'));
 
   //array of hour block divs to iterate over to set past, current and future stylings
-  var hourBlockDivs = $("#hour-9, #hour-10, #hour-11, #hour-12, #hour-13, #hour-14, #hour-15, #hour-16");
+  var hourBlockDivs = $("#hour-9, #hour-10, #hour-11, #hour-12, #hour-13, #hour-14, #hour-15, #hour-16, #hour-17");
   //current hour in 24 hour format to compare timeslot times for class stylings
   var currentHour = dayjs().format("H");
     for (let i = 0; i < hourBlockDivs.length; i++) {
